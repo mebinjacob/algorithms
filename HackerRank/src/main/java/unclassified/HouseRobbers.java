@@ -1,3 +1,5 @@
+package unclassified;
+
 
 public class HouseRobbers {
 	//this is awesome ...
@@ -12,6 +14,10 @@ public class HouseRobbers {
         } 
         return t1;
 		
+	}
+	
+	private int max(int i, int j){
+		return i > j ? i : j;
 	}
 }
 

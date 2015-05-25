@@ -1,7 +1,7 @@
 package sorting;
 
 public class shellSort {
-	public static void sort(Comparable[] a)
+	public  void sort(int[] a)
 	{
 		int N = a.length;
 		
@@ -20,5 +20,15 @@ public class shellSort {
 			h = h/3;
 			
 		}
+	}
+	
+	private void exch(int[] input, int i, int j){
+		int temp = input[i];
+		input[i] = input[j];
+		input[j] = temp;
+	}
+	
+	private boolean less(int i, int j){
+		return i < j;
 	}
 }
