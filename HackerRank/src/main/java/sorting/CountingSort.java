@@ -1,5 +1,5 @@
 package sorting;
-/*
+/*This is good if the number of possible values is less
  * Constraints 
  *100≤n≤106 
  *0≤x<100,x∈ar
@@ -10,11 +10,7 @@ public class CountingSort {
 	private int[] count = new int[maxRage];
 	public int[] sort(int[] input){
 		//count the occurrence of each element
-		//initialize the count array with 0 
-		for(int i = 0; i < maxRage; i++){
-			count[i] = 0;
-		}
-		
+		//counts the elements
 		for(int j = 0; j < input.length; j++){
 			if(input[j] < maxRage){
 				count[input[j]]++;
@@ -23,6 +19,16 @@ public class CountingSort {
 				System.out.println("Value greater than allowed range");
 			}
 		}
-		return count;
+		
+		for(int k=1; k < maxRage; k++){
+			count[k] += count[k-1];
+		}
+		
+		int[] output = new int[input.length];
+		//Build the output character array 
+		for(int l = input.length - 1; l > 0 ; l--){
+			output[--count[input[l]]] = input[l]; 
+		}
+		return output;
 	}
 }

@@ -1,5 +1,7 @@
 package sorting;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.junit.Test;
@@ -23,7 +25,7 @@ public class CountingSortTest {
 		}
 	}
 	
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
         int inputSize=(scanner.nextInt());
         scanner.nextLine();
@@ -44,6 +46,44 @@ public class CountingSortTest {
 		int[] sorted = cs.sort(input);
 		for(int k : sorted){
 			System.out.print(k + " ");
+		}
+        scanner.close();
+	}*/
+	
+	//https://www.hackerrank.com/challenges/countingsort4 fix for input sizes and submit here
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+        int inputSize=(scanner.nextInt());
+        scanner.nextLine();
+        int[] input = new int[inputSize];
+        int l = 0;
+        Map<Integer, String> mapInput = new HashMap<Integer,String>();
+        while(scanner.hasNextLine()){
+        	String currentInput = scanner.nextLine();
+            String[] split = currentInput.split(" ");
+            int key = Integer.parseInt(split[0]);
+            input[l++] = key;
+            String value = split[1];
+            mapInput.put(key, value);
+            if(l == inputSize)
+            	break;
+        }
+        
+        int[] otherHalf = new int[inputSize/2];
+        int m = 0;
+        for(int i =inputSize/2; i < inputSize; i++, m++){
+        	otherHalf[m] = input[i];
+        }
+        CountingSort cs = new CountingSort(); //Solution.CountingSort cs = new Solution().new CountingSort(); -- after making inner class for hackerrank
+		int[] sorted = cs.sort(otherHalf);
+		
+		//first half
+		for(int i =0 ; i < inputSize/2; i++){
+        	System.out.print(mapInput.get(i) + " ");
+        }
+		//otherhalf
+		for(int i =0 ; i < sorted.length; i++){
+			System.out.print(mapInput.get(sorted[i]) + " ");
 		}
         scanner.close();
 	}
