@@ -17,6 +17,20 @@ public class MergeSort {
 	
 	public void sort() {
 		mergeSort(0, input.length - 1);
+		//mergeSort1(0, input.length - 1);
+	}
+	
+	
+	// This is more efficient for large array
+	public void mergeSort1(int low, int high){
+		if((high - low + 1) < 16)
+			 new InsertionSort().insertionSort(input);
+		else{
+			int mid = low + (high - low)/2;
+			mergeSort1(low, mid);
+			mergeSort1(mid + 1, high);
+			merge(low, mid, high);
+		}
 	}
 
 	private void mergeSort(int low, int high)
